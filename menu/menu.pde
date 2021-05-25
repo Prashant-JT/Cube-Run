@@ -164,54 +164,8 @@ public void createGUI() {
   sy = 14; 
   oy = (int)(sy*1.4f);
 
-  ////////////////////////////////////////////////////////////////////////////
-  // GUI - CLOTH
-  ////////////////////////////////////////////////////////////////////////////
-  Group group_physics = cp5.addGroup("global");
-  {
-    group_physics.setHeight(20).setSize(gui_w, height)
-      .setBackgroundColor(color(0, 204)).setColorBackground(color(0, 204));
-    group_physics.getCaptionLabel().align(CENTER, CENTER);
-
-    px = 10; 
-    py = 15;
-
-    int bsx = (gui_w-40)/3;
-    cp5.addButton("rebuild").setGroup(group_physics).plugTo(this, "createBodies").setSize(bsx, 18).setPosition(px, py);
-    cp5.addButton("pause")  .setGroup(group_physics).plugTo(this, "togglePause").setSize(bsx, 18).setPosition(px+=bsx+10, py);
-    cp5.addButton("cam_0")   .setGroup(group_physics).plugTo(this, "resetCam").setSize(bsx, 18).setPosition(px+=bsx+10, py);
-
-    px = 10; 
-    cp5.addSlider("gravity").setGroup(group_physics).setSize(sx, sy).setPosition(px, py+=(int)(oy*1.5f))
-      .setRange(0, 1).setValue(physics.param.GRAVITY[1]).plugTo(this, "setGravity");
-
-    cp5.addSlider("iter: springs").setGroup(group_physics).setSize(sx, sy).setPosition(px, py+=oy)
-      .setRange(0, 20).setValue(physics.param.iterations_springs).plugTo( physics.param, "iterations_springs");
-
-    cp5.addSlider("iter: collisions").setGroup(group_physics).setSize(sx, sy).setPosition(px, py+=oy)
-      .setRange(0, 8).setValue(physics.param.iterations_collisions).plugTo( physics.param, "iterations_collisions");
-
-    cp5.addRadio("setDisplayMode").setGroup(group_physics).setSize(sy, sy).setPosition(px, py+=(int)(oy*1.4f))
-      .setSpacingColumn(2).setSpacingRow(2).setItemsPerRow(1)
-      .addItem("springs: colored", 0)
-      .addItem("springs: tension", 1);
-    //.activate(DISPLAY_MODE);
-
-    cp5.addCheckBox("setDisplayTypes").setGroup(group_physics).setSize(sy, sy).setPosition(px, py+=(int)(oy*2.4f))
-      .setSpacingColumn(2).setSpacingRow(2).setItemsPerRow(1)
-      .addItem("PARTICLES", 0).activate(DISPLAY_PARTICLES ? 0 : 5)
-      .addItem("MESH ", 1).activate(DISPLAY_MESH      ? 1 : 5)
-      .addItem("SRPINGS", 2).activate(DISPLAY_SRPINGS   ? 2 : 5)
-      .addItem("NORMALS", 3).activate(DISPLAY_NORMALS   ? 3 : 5)
-      .addItem("WIREFRAME", 4).activate(DISPLAY_WIREFRAME ? 4 : 5);
-  }
-
-
-
-  ////////////////////////////////////////////////////////////////////////////
-  // GUI - SPRINGS
-  ////////////////////////////////////////////////////////////////////////////
-  Group group_springs = cp5.addGroup("springs");
+  // GUI - Menu
+  Group group_springs = cp5.addGroup("menu");
   {
     Group group_cloth = group_springs;
 
@@ -239,6 +193,46 @@ public void createGUI() {
 
     cp5.addSlider("Ball.pressure").setGroup(group_cloth).setSize(sx, sy).setPosition(px, py+=oy)
       .setRange(0.01f, 1).setValue(param_ball_spring.damp_inc).plugTo(param_ball_spring, "damp_inc");
+  }
+  
+  // GUI - Controls
+  Group group_physics = cp5.addGroup("controls");
+  {
+    group_physics.setHeight(20).setSize(gui_w, height)
+      .setBackgroundColor(color(0, 204)).setColorBackground(color(0, 204));
+    group_physics.getCaptionLabel().align(CENTER, CENTER);
+
+    px = 10; 
+    py = 15;
+
+    int bsx = (gui_w-40)/3;
+    cp5.addButton("restart").setGroup(group_physics).plugTo(this, "createBodies").setSize(bsx, 18).setPosition(px, py);
+    cp5.addButton("pause")  .setGroup(group_physics).plugTo(this, "togglePause").setSize(bsx, 18).setPosition(px+=bsx+10, py);
+    cp5.addButton("exit")   .setGroup(group_physics).plugTo(this, "resetCam").setSize(bsx, 18).setPosition(px+=bsx+10, py);
+
+    px = 10; 
+    cp5.addSlider("gravity").setGroup(group_physics).setSize(sx, sy).setPosition(px, py+=(int)(oy*1.5f))
+      .setRange(0, 1).setValue(physics.param.GRAVITY[1]).plugTo(this, "setGravity");
+
+    cp5.addSlider("iter: springs").setGroup(group_physics).setSize(sx, sy).setPosition(px, py+=oy)
+      .setRange(0, 20).setValue(physics.param.iterations_springs).plugTo( physics.param, "iterations_springs");
+
+    cp5.addSlider("iter: collisions").setGroup(group_physics).setSize(sx, sy).setPosition(px, py+=oy)
+      .setRange(0, 8).setValue(physics.param.iterations_collisions).plugTo( physics.param, "iterations_collisions");
+
+    cp5.addRadio("setDisplayMode").setGroup(group_physics).setSize(sy, sy).setPosition(px, py+=(int)(oy*1.4f))
+      .setSpacingColumn(2).setSpacingRow(2).setItemsPerRow(1)
+      .addItem("springs: colored", 0)
+      .addItem("springs: tension", 1);
+    //.activate(DISPLAY_MODE);
+
+    cp5.addCheckBox("setDisplayTypes").setGroup(group_physics).setSize(sy, sy).setPosition(px, py+=(int)(oy*2.4f))
+      .setSpacingColumn(2).setSpacingRow(2).setItemsPerRow(1)
+      .addItem("PARTICLES", 0).activate(DISPLAY_PARTICLES ? 0 : 5)
+      .addItem("MESH ", 1).activate(DISPLAY_MESH      ? 1 : 5)
+      .addItem("SRPINGS", 2).activate(DISPLAY_SRPINGS   ? 2 : 5)
+      .addItem("NORMALS", 3).activate(DISPLAY_NORMALS   ? 3 : 5)
+      .addItem("WIREFRAME", 4).activate(DISPLAY_WIREFRAME ? 4 : 5);
   }
 
   ////////////////////////////////////////////////////////////////////////////
