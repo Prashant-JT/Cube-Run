@@ -2,11 +2,13 @@ import controlP5.*;
 import ddf.minim.*;
 
 PFont titleFont, buttonTextFont;
-PImage background, img2, img4;
+PImage background, musicImg, musicOverImg, noMusicImg, noMusicOverImg;
 ControlP5 cp5;
 AudioPlayer introSong;
 Minim minim;
-Boolean introSongStatus;
+Boolean introSongStatus, noMusic;
+
+int loopcount;
 
 void setup() {
   size(600, 800);
@@ -14,25 +16,22 @@ void setup() {
 }
 
 void draw () {
+  mainMenu();
+  mouseOverButtons();
+  musicStatus();
+}
+
+void mainMenu() {
   background(background);
   textFont(titleFont);
   text("Cube", 150, 150);
   text("Run", 250, 230);
-  if (!introSongStatus) {
-    introSong.play();
-    introSongStatus = true;
-  }
-  if (introSong.isMuted()) {
-    cp5.getController("Sound").hide();
-    cp5.getController("noSound").show();
+  if (noMusic) {
+    cp5.getController("Music").hide();
+    cp5.getController("noMusic").show();
   } else {
-    cp5.getController("Sound").show();
-    cp5.getController("noSound").hide();
-  }
-  if (cp5.isMouseOver(cp5.getController("Sound"))) {
-    cp5.getController("Sound").setImage(img4);
-  } else {
-    cp5.getController("Sound").setImage(img2);
+    cp5.getController("Music").show();
+    cp5.getController("noMusic").hide();
   }
 }
 
@@ -44,25 +43,47 @@ void loadMainMenu() {
   buttonTextFont = createFont("Nunito-Regular.ttf", 12);
   ControlFont font = new ControlFont(buttonTextFont, 241);
   background = loadImage("background.png");
-  img4 = loadImage("musicOver.png");
-  img2 = loadImage("music.png");
-  introSongStatus = false;
-  PImage [] imgs = {loadImage("music.png"), loadImage("noMusic.png"), loadImage("sounds.png"), loadImage("noSounds.png")};
-  cp5.addButton("Start").setValue(0).setPosition(175,300).setSize(250,100).getCaptionLabel().setFont(font).setSize(25);
+  musicImg = loadImage("music.png");
+  musicOverImg = loadImage("musicOver.png");
+  noMusicImg = loadImage("noMusic.png");
+  noMusicOverImg = loadImage("noMusicOver.png");
+  introSongStatus = true;
+  noMusic = false;
+  introSong.loop(10);
+  PImage [] imgs = {loadImage("music.png"), loadImage("noMusic.png")};
+  cp5.addButton("Play").setValue(0).setPosition(175,300).setSize(250,100).getCaptionLabel().setFont(font).setSize(25);
   cp5.addButton("Settings").setValue(0).setPosition(175,450).setSize(250,100).getCaptionLabel().setFont(font).setSize(25);
   cp5.addButton("Credits").setValue(0).setPosition(175,600).setSize(250,100).getCaptionLabel().setFont(font).setSize(25);
-  cp5.addButton("Sound").setValue(0).setPosition(520,720).setImage(imgs[0]).updateSize();
-  cp5.addButton("noSound").setValue(0).setPosition(520,720).setImage(imgs[1]).updateSize();
+  cp5.addButton("Music").setValue(0).setPosition(520,720).setImage(imgs[0]).updateSize();
+  cp5.addButton("noMusic").setValue(0).setPosition(520,720).setImage(imgs[1]).updateSize();
 }
 
-public void controlEvent(ControlEvent theEvent) {
-  println(theEvent.getController().getName());
+void musicStatus() {
+  if (!introSong.isPlaying()) {
+    introSong.play();
+  }
+}
+
+void mouseOverButtons() {
+  if (cp5.isMouseOver(cp5.getController("Music"))) {
+    cp5.getController("Music").setImage(musicOverImg);
+  } else {
+    cp5.getController("Music").setImage(musicImg);
+  }
+  if (cp5.isMouseOver(cp5.getController("noMusic"))) {
+    cp5.getController("noMusic").setImage(noMusicOverImg);
+  } else {
+    cp5.getController("noMusic").setImage(noMusicImg);
+  }
 }
 
 void mousePressed() {
-  for (ControllerInterface c : cp5.getMouseOverList()) {
-    if(c.getName() == "Sound") {
-      introSong.mute();
-    }
+  if (cp5.isMouseOver(cp5.getController("Music"))) {
+    introSong.mute();
+    noMusic = true;
+  } 
+  if (cp5.isMouseOver(cp5.getController("noMusic"))) {
+    introSong.unmute();
+    noMusic = false;
   }
 }
