@@ -37,7 +37,7 @@ class Menu {
       .addItem(createGroupControls());
   }
 
-  private Group createGroupMenu () {
+  private Group createGroupMenu() {
     // Menu drop down
     Group groupMenu = cp5.addGroup("menu");
     {
@@ -59,8 +59,8 @@ class Menu {
         .setSize(bsx, 18)
         .setPosition(px+=bsx+10, py);
 
-      cp5.addButton("exit").setGroup(groupMenu)
-        .plugTo(this, "exitGame")
+      cp5.addButton("Go to menu").setGroup(groupMenu)
+        .plugTo(this, "goToMenu")
         .setSize(bsx, 18)
         .setPosition(px+=bsx+10, py);
     }  
@@ -85,28 +85,6 @@ class Menu {
         .setRange(0, 1)
         .setValue(physics.getGravity())
         .plugTo(this, "setGravity");
-
-/**Esto no creo que haga falta
-      cp5.addSlider("iter: springs").setGroup(groupControls)
-        .setSize(sx, sy).setPosition(px, py+=oy)
-        .setRange(0, 20)
-        .setValue(test)
-        .plugTo(test, "iterations_springs");
-
-      cp5.addSlider("iter: collisions").setGroup(groupControls)
-        .setSize(sx, sy)
-        .setPosition(px, py+=oy)
-        .setRange(0, 8)
-        .setValue(test)
-        .plugTo(test, "iterations_collisions");
-
-      cp5.addRadio("setDisplayMode").setGroup(groupControls)
-        .setSize(sy, sy).setPosition(px, py+=(int)(oy*1.4f))
-        .setSpacingColumn(2).setSpacingRow(2).setItemsPerRow(1)
-        .addItem("springs: colored", 0)
-        .addItem("springs: tension", 1);
-      //.activate(DISPLAY_MODE);
-**/
     } 
     return groupControls;
   }
@@ -130,4 +108,11 @@ class Menu {
     utils.reset();  
     cp5.getController("gravity").setValue(physics.getGravity());
   }
+  
+  void goToMenu() {
+    restartGame();
+    introShow = true;
+    intro.showCP5();
+  }
+  
 }

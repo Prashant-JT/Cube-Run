@@ -24,6 +24,7 @@ Collision collision;
 Menu menu;
 Views views;
 Intro intro;
+Photo setPhoto;
 
 PFont buttonTextFont;
 boolean introShow = true;
@@ -35,7 +36,7 @@ void settings() {
 
 void setup() {  
   //surface.setLocation(230, 0); //Posición de la ventana
-  
+
   context = new DwPixelFlow(this);
 
   utils = new Utils(this);
@@ -47,6 +48,7 @@ void setup() {
   menu = new Menu(this);
   intro = new Intro(this);
   views = new Views();
+  setPhoto = new Photo(this);
 
   utils.initObjects();
 
@@ -56,7 +58,6 @@ void setup() {
 void draw () {
   if (introShow) {
     intro.display();
-    
   } else {
     scenario.displayBackground(); 
 

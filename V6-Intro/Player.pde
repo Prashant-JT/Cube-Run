@@ -70,7 +70,7 @@ public class Player {
     this.player.setMaterialColor(this.colorPlayer);
     this.player.setParticleColor(this.colorPlayer);
     this.player.setParam(param_player_particle);
-    this.player.setParam(param_player_spring); //<>//
+    this.player.setParam(param_player_spring);
     this.player.create(physics.getPhysic(), nodes_x, nodes_y, nodes_z, nodes_r, this.xPos, this.yPos, this.zPos);
     this.player.createShapeParticles(this.exec, true);
   }

@@ -71,9 +71,11 @@ void keyReleased() {
   if (!pauseGame) setMovement(key, false);
 }
 
-void keyPressed () {
+void keyPressed() {
   if (!pauseGame) setMovement(key, true); 
   
   if (key == 'P' || key == 'p') pauseGame = !pauseGame;
   if (key == 'R' || key == 'r') menu.restartGame();
+  
+  if (key == 'C' || key == 'c') setPhoto.photoSetImage();
 }

@@ -1,5 +1,3 @@
-//import controlP5;
-
 class Credits {
   ControlP5 cp5;
   private PApplet context;
