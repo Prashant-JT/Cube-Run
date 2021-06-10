@@ -1,0 +1,78 @@
+public class Obstacle_PIXEL {
+  
+  private DwSoftGrid3D obstacle;
+  private DwParticle.Param param_obstacle_particle;
+  private DwSpringConstraint.Param param_obstacle_spring;
+  
+  //PARAMS
+  private color colorObstacle;
+  private PApplet exec;
+  
+  //POS
+  private int xPos;
+  private int yPos;
+  private int zPos;
+  
+  //SIZE
+  private int nodes_x;
+  private int nodes_y;
+  private int nodes_z;
+  
+  public Obstacle_PIXEL(PApplet exec, color colorObstacle, int[] params) {
+    this.obstacle = new DwSoftGrid3D();
+    this.param_obstacle_particle = new DwParticle.Param();
+    this.param_obstacle_spring = new DwSpringConstraint.Param();
+    init();
+    
+    //PARAMS
+    this.exec = exec;
+    this.colorObstacle = colorObstacle;
+    
+    //POS
+    this.xPos = params[0];
+    this.yPos = params[1];
+    this.zPos = params[2];
+    
+    //SIZE
+    this.nodes_x = params[3];
+    this.nodes_y = params[4];
+    this.nodes_z = params[5];
+  } 
+  
+  private void init() {
+    param_obstacle_particle.DAMP_BOUNDS    = 0.89999f;
+    param_obstacle_particle.DAMP_COLLISION = 0.99999f;
+    param_obstacle_particle.DAMP_VELOCITY  = 0.99991f;   
+    
+    param_obstacle_spring.damp_dec = 2f;
+    param_obstacle_spring.damp_inc = 0.089999f;
+    
+    this.obstacle.CREATE_STRUCT_SPRINGS = true;
+    this.obstacle.CREATE_SHEAR_SPRINGS  = true;
+    this.obstacle.CREATE_BEND_SPRINGS   = true;
+    this.obstacle.bend_spring_mode      = 0;
+    this.obstacle.bend_spring_dist      = 2;
+  }
+  
+  public void createObstacle () {
+    int nodes_r = 8;
+            
+    this.obstacle.self_collisions = false;
+    this.obstacle.collision_radius_scale = 1.1f;
+    
+    this.obstacle.setMaterialColor(this.colorObstacle);
+    this.obstacle.setParticleColor(this.colorObstacle);
+    this.obstacle.setParam(param_obstacle_particle);
+    this.obstacle.setParam(param_obstacle_spring);
+    this.obstacle.create(physics.getPhysic(), this.nodes_x, this.nodes_y, this.nodes_z, nodes_r, this.xPos, this.yPos, this.zPos);
+    this.obstacle.createShapeParticles(this.exec, true);
+  }
+     
+  public DwSoftBody3D getObstacle () {
+    return this.obstacle;  
+  }
+  
+  public void setColor (color newColor) {
+    this.obstacle.setMaterialColor(newColor);  
+  } 
+}
