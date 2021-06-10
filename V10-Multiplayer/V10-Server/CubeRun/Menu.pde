@@ -74,7 +74,7 @@ class Menu {
     // Controls drop down
     Group groupControls = cp5.addGroup("controls");
     {
-      groupControls.setHeight(20).setSize(gui_w, 200).setBackgroundColor(color(0, 204)).setColorBackground(color(0, 204));
+      groupControls.setHeight(20).setSize(gui_w, 220).setBackgroundColor(color(0, 204)).setColorBackground(color(0, 204));
       groupControls.getCaptionLabel().align(CENTER, CENTER);
 
       px = 10; 

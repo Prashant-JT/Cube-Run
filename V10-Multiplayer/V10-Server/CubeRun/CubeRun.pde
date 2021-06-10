@@ -7,6 +7,7 @@ import com.thomasdiewald.pixelflow.java.softbodydynamics.softbody.DwSoftBody3D;
 import com.thomasdiewald.pixelflow.java.softbodydynamics.particle.DwParticle3D;
 import com.thomasdiewald.pixelflow.java.utils.DwCoordinateTransform;
 import processing.net.*;
+import processing.sound.*;
 
 Server s; 
 Client c;
@@ -32,6 +33,7 @@ Menu menu;
 Views views;
 Intro intro;
 Photo setPhoto;
+SoundFile jumpSound;
 
 PImage background; 
 PFont buttonTextFont;
@@ -46,7 +48,7 @@ void settings() {
   smooth(8);
 }
 
-void setup() {    
+void setup() {
   background = loadImage("background.png");
   context = new DwPixelFlow(this);
 
@@ -60,6 +62,8 @@ void setup() {
   intro = new Intro(this);
   views = new Views();
   setPhoto = new Photo(this);
+  
+  jumpSound = new SoundFile(this, "jump.wav");
 
   utils.initObjects();
   textAlign(CENTER, CENTER);  
@@ -81,11 +85,6 @@ void draw () {
   fill(255);
   background(background);
   if (introShow) { 
-    player.updateCamera();   
-    physics.updatePhysic(); 
-    player.compute();
-    scenario.setLights(); 
-    player.display();    
     camera();
     intro.display();
   } else {     

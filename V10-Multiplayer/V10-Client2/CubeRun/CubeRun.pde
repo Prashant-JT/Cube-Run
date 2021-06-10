@@ -32,6 +32,7 @@ Menu menu;
 Views views;
 Intro intro;
 Photo setPhoto;
+SoundFile jumpSound;
 
 PImage background; 
 PFont buttonTextFont;
@@ -61,6 +62,8 @@ void setup() {
   views = new Views();
   setPhoto = new Photo(this);
 
+  jumpSound = new SoundFile(this, "jump.wav");
+
   utils.initObjects();
   textAlign(CENTER, CENTER);  
   registerMethod("pre", this);
@@ -82,11 +85,6 @@ void draw () {
   fill(255);
   background(background);
   if (introShow) { 
-    player.updateCamera();   
-    physics.updatePhysic(); 
-    player.compute();
-    scenario.setLights(); 
-    player.display();
     camera();
     intro.display();
   } else {

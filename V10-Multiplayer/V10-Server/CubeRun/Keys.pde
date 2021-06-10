@@ -84,8 +84,12 @@ void keyPressed() {
       if (nJumps >= 2 && !(player.getBoundsY()[0]-5 <= -200)) return;
       if (player.getBoundsY()[0]-5 <= -200) nJumps = 0;
       nJumps++;
-      //player.setColor(color(random(255), random(255), random(255)));    
+      thread("jumpSound");
       physics.updatePos(0, jump, -0.35);
       sendData(0, jump, -0.35, 0, 0);
   }
+}
+
+void jumpSound() {
+  jumpSound.play();
 }
