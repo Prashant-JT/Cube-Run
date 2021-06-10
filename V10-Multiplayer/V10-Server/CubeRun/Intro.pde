@@ -24,7 +24,7 @@ class Intro {
     mainMenu();
     mouseOverButtons();
     musicStatus();
-    
+
     textFont(titleFont);
     if (showCredits) {
       credits.display();
@@ -33,7 +33,7 @@ class Intro {
       text("Run", width/2 + 50, height/2 - 190);
     }
   }
-  
+
   void mainMenu() { 
     if (noMusic) {
       cp5.getController("Music").hide();
@@ -64,7 +64,7 @@ class Intro {
     cp5.addButton("noMusic").setPosition(width-80, height-80).setImage(noMusicImg).updateSize().plugTo(this, "unmute");
     cp5.addButton("Exit").setPosition(20, height-80).setImage(exitImg).updateSize().plugTo(this, "exitGame");
   }
-  
+
   public void updateGuiW () {
     cp5.getController("Play").setPosition((width/2 - 125), (height/2 - 100));
     cp5.getController("Settings").setPosition((width/2 - 125), (height/2 - 100)+150);
@@ -72,7 +72,7 @@ class Intro {
     cp5.getController("Music").setPosition(width-80, height-80);
     cp5.getController("noMusic").setPosition(width-80, height-80);
     cp5.getController("Exit").setPosition(20, height-80);
-    cp5.setGraphics(this.context,0,0);
+    cp5.setGraphics(this.context, 0, 0);
     credits.updateGuiW();
   }
 
@@ -116,7 +116,7 @@ class Intro {
     showCredits = !showCredits;
     this.cp5.show();
   }
-  
+
   void showCP5() {
     this.cp5.show();
   }
@@ -142,11 +142,15 @@ class Intro {
     intro.getIntroSong().unmute();
     intro.setNoMusic();
   }
-  
+
   void exitGame() {
     exit();
   }
-  
+
+  PFont getTitleFont() {
+    return titleFont;
+  }
+
   void showSettings() {
     if (!setPhoto.getError()) {
       this.cp5.hide();
@@ -154,5 +158,4 @@ class Intro {
       showPhoto = true;
     }
   }
-  
 }

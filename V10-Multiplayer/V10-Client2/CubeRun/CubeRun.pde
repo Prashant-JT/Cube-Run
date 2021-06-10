@@ -146,5 +146,5 @@ void readData() {
 }
 
 void sendData(float inc, float jump, float grav, float angle, int level) {
-  c.write(inc + " " + jump + " " + grav + " " + angle + " " + level + "\n");
+  if (showPlayer2) c.write(inc + " " + jump + " " + grav + " " + angle + " " + level + "\n");
 }

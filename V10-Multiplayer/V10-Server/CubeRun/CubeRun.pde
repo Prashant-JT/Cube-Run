@@ -40,6 +40,7 @@ PFont buttonTextFont;
 boolean introShow = true;
 boolean showPhoto = false;
 boolean showPlayer2 = false;
+boolean showHelp = false;
 int w, h;
 String text = "YOU WIN";
 
@@ -62,13 +63,13 @@ void setup() {
   intro = new Intro(this);
   views = new Views();
   setPhoto = new Photo(this);
-  
+
   jumpSound = new SoundFile(this, "jump.wav");
 
   utils.initObjects();
   textAlign(CENTER, CENTER);  
   registerMethod("pre", this);
-  
+
   s = new Server(this, 5000);  // Start a simple server on a port
 }
 
@@ -90,8 +91,9 @@ void draw () {
   } else {     
     readData();
     scenario.displayBackground(); 
-    
+
     menu.display();
+    if (showHelp) return;
 
     player.updateCamera();   
     physics.updatePhysic();  
@@ -113,7 +115,7 @@ void draw () {
     } else {
       views.pauseGame();
     }  
-    
+
     if (winner) views.messageGame();
     views.showLevel();
   }
@@ -144,5 +146,5 @@ void readData() {
 }
 
 void sendData(float inc, float jump, float grav, int angle, int level) {
-  s.write(inc + " " + jump + " " + grav + " " + angle + " " + level + "\n");
+  if (showPlayer2) s.write(inc + " " + jump + " " + grav + " " + angle + " " + level + "\n");
 }

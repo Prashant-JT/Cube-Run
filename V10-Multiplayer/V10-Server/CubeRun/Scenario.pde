@@ -2,30 +2,30 @@ public class Scenario {
   private color backColor;
   private PImage backImage = null;
   private PShape lane = null;
-  
+
   public Scenario(color backColor, color laneColor) {
     this.backColor = backColor;
-    initLane(laneColor);        
+    initLane(laneColor);
   }
-  
+
   public Scenario(PImage backImage, color laneColor) {
     this.backImage = backImage;
     initLane(laneColor);
   }
-  
+
   private void initLane(color laneColor) {
     this.lane = createShape(RECT, 200, -200, -500, 500); 
     this.lane.setFill(laneColor);
   }
-  
+
   void setBackground(color newColor) {
     this.backColor = newColor;
   }
-  
+
   void setBackground(PImage newImage) {
     this.backImage = newImage;
   }
-  
+
   void displayBackground() {
     if (backImage != null) {
       background(this.backImage);
@@ -33,7 +33,7 @@ public class Scenario {
       background(this.backColor);
     }
   }
-  
+
   void setLights() {
     // lights, materials
     // lights();
@@ -45,8 +45,8 @@ public class Scenario {
     specular(255, 0, 0);    
     shininess(5);
   }  
-  
-  void displayLane(){
+
+  void displayLane() {
     pushMatrix(); 
     translate(100, -200);
     rotateX(PI/2);

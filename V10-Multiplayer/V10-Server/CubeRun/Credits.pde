@@ -16,7 +16,7 @@ class Credits {
     cp5.addButton("goBackCredits").setPosition(20, 20).setImage(goBackImg).updateSize().plugTo(this, "goBack");
     cp5.hide();
   }
-  
+
   void display() {
     textSize(50);
     textAlign(CENTER);
@@ -33,12 +33,12 @@ class Credits {
     textAlign(CENTER);
     mouseOverButtons();
   }
-  
+
   public void updateGuiW () {
     cp5.getController("linkFab").setPosition((width/2 - 190), (height/2 - 150));
     cp5.getController("linkJos").setPosition((width/2 - 190)+320, (height/2 - 150)+200);
     cp5.getController("linkPra").setPosition((width/2 - 190), (height/2 - 150)+400);
-    cp5.setGraphics(this.context,0,0);
+    cp5.setGraphics(this.context, 0, 0);
   }
 
   void mouseOverButtons() {
@@ -65,26 +65,26 @@ class Credits {
       cp5.getController("goBackCredits").setImage(goBackImg);
     }
   }
-  
+
   void goBack() {
     this.cp5.hide();
+    cursor(ARROW);
     intro.setShowCredits();
   }
-  
+
   void showCP5() {
     this.cp5.show();
   }
-  
+
   void goToFab() {
     link("https://github.com/Fabbeiru");
   }
-  
+
   void goToJos() {
     link("https://github.com/JoseMAP-99");
   }
-  
+
   void goToPra() {
     link("https://github.com/Prashant-JT");
   }
-  
 }

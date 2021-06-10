@@ -27,7 +27,7 @@ class Photo {
 
   void startCam() {    
     this.img = null; 
-    cam = new Capture(this.context, 600, 400, cameras[0]);
+    cam = new Capture(this.context, 600, 400, cameras[1]);
     cam.start();
   }
   
@@ -52,6 +52,6 @@ class Photo {
     saveFrame("photo.png");
     img = loadImage("photo.png");
     img = img.get((w/2)-300, (h/2)-400, 600, 400);
-    img.resize(70, 60); //REVISARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+    img.resize(70, 60); 
   }
 }

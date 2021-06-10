@@ -135,7 +135,7 @@ public class Player {
 
   public void updateCamera() {
     float [] pos = getMiddle();  
-    camera(getCloseFocus()[0], pos[1] + 80, getCloseFocus()[1], 
+    camera(getCloseFocus()[0], pos[1] + 60, getCloseFocus()[1], 
       getFarFocus()[0], -150, getFarFocus()[1], 
       0.02, -1.0, 0.0);
 

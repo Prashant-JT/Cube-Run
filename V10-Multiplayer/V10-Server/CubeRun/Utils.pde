@@ -19,9 +19,9 @@ public class Utils {
       params.add(new int[] {r('w'), r('h'), r('w'), ra(), ra(), ra()});
     }
   }
-  
+
   public int getLevel() {
-    return this.level;  
+    return this.level;
   }
 
   private int r(char which) {
@@ -38,20 +38,20 @@ public class Utils {
   }
 
   public void checkWinner() { 
-      this.level++;
-      this.nObjects+=10; 
-      this.params.clear();
-      last = -175;
-      newLast = -175+25;
-      this.initPositions();
-      objects.resetList();
-      reset();     
+    this.level++;
+    this.nObjects+=10; 
+    this.params.clear();
+    last = -175;
+    newLast = -175+25;
+    this.initPositions();
+    objects.resetList();
+    reset();
   }
 
   void initObjects() {
     player = new Player(this.exec, colorPlayer);
     player.createPlayer(); 
-    
+
     player2 = new Player(this.exec, colorPlayer);
     player2.createPlayer(); 
 
