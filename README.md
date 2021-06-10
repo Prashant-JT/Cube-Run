@@ -1,7 +1,7 @@
 # CIU
 
-Client (add public IP and port of server in setup() of CubeRun.pde):
+[CubeRun-Server](Server) (add public IP and port of server in setup() in CubeRun.pde):
 - c = new Client(this, "XX.XXX.XXX.XXX", XXXX); // AQUI IP PÚBLICA Y PUERTO DEL SERVIDOR
 
-Server (add previous port in setup() of CubeRun.pde):
+[CubeRun-Client](Client) (add previous port in setup() in CubeRun.pde):
 - s = new Server(this, XXXX);  // PUERTO 
