@@ -76,7 +76,7 @@ void setup() {
   registerMethod("pre", this);
 
   // Replace with your server’s IP and port
-  c = new Client(this, "87.220.105.133", 5000);
+  c = new Client(this, "XX.XXX.XXX.XXX", XXXX); // AQUI IP PÚBLICA Y PUERTO DEL SERVIDOR
   
   String[] portName = Serial.list();
   if (portName.length == 0) {
