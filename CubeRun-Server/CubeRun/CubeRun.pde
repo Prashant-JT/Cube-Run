@@ -162,7 +162,7 @@ void readData() {
 }
 
 void sendData(float inc, float jump, float grav, int angle, int level) {
-  if (showPlayer2) s.write(inc + " " + jump + " " + grav + " " + angle + " " + level + "\n");
+  s.write(inc + " " + jump + " " + grav + " " + angle + " " + level + "\n");
 }
 
 int centerX = 521;
