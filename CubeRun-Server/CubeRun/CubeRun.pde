@@ -84,7 +84,7 @@ void setup() {
   } else {
     println("Available serial devices:");
     for (int i = 0; i < portName.length; i++) println(portName[i]);
-    arduino = new Serial(this, Serial.list()[2], 9600);
+    arduino = new Serial(this, Serial.list()[0], 9600);
     arduino.bufferUntil('\n');
   }
 }
