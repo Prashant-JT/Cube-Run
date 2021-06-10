@@ -1,4 +1,4 @@
-/* Los obstáculos que son creados a raz de la pista funcionan mal con el salto de plataform*/
+/* Los obstáculos que son creados a raz de la pista funcionan mal con el salto de plataform */
 import com.thomasdiewald.pixelflow.java.DwPixelFlow;
 import com.thomasdiewald.pixelflow.java.softbodydynamics.DwPhysics;
 import com.thomasdiewald.pixelflow.java.softbodydynamics.constraint.DwSpringConstraint;
@@ -7,7 +7,8 @@ import com.thomasdiewald.pixelflow.java.softbodydynamics.softbody.DwSoftGrid3D;
 import com.thomasdiewald.pixelflow.java.softbodydynamics.softbody.DwSoftBody3D;
 import com.thomasdiewald.pixelflow.java.softbodydynamics.particle.DwParticle3D;
 import com.thomasdiewald.pixelflow.java.utils.DwCoordinateTransform;
-import processing.net.*; 
+import processing.net.*;
+import processing.sound.*; 
 
 Client c; 
 String input;
