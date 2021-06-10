@@ -75,7 +75,7 @@ void setup() {
   textAlign(CENTER, CENTER);  
   registerMethod("pre", this);
 
-  s = new Server(this, 5000);  // Start a simple server on a port
+  s = new Server(this, XXXX);  // PUERTO 
   
   String[] portName = Serial.list();
   if (portName.length == 0) {
