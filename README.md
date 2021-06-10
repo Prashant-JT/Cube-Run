@@ -5,7 +5,8 @@ Referencias usadas:
 - https://github.com/diwi/PixelFlow
 - https://github.com/sojamo/controlp5
 
-Client:
-- c = new Client(this, "XX.XXX.XXX.XXX", XXXX); // AQUI IP PÚBLICA Y PUERTO DEL SERVIDOR
+Client (añadir la IP pública y el puerto del servidor):
+ c = new Client(this, "XX.XXX.XXX.XXX", XXXX); // AQUI IP PÚBLICA Y PUERTO DEL SERVIDOR
 
-Server:
+Server (añadir el puerto abierto):
+ s = new Server(this, XXXX);  // PUERTO 
